@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "StreamingLlmBlazor.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "..\\StramingLlmApi\\StramingLlmApi.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "..\\SteamingLlmWebSocket\\StreamingLlmWebSocket.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

@@ -1,0 +1,6 @@
+@SteamingLlmWebSocket_HostAddress = http://localhost:5025
+
+GET {{SteamingLlmWebSocket_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
