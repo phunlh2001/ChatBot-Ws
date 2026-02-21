@@ -16,12 +16,9 @@ builder.Services.AddFastEndpoints();
 
 builder.Services.AddSingleton<AiChatService>();
 
-builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
-
 builder.Services.AddSingleton(new ChatClient(
     model: "gpt-5",
-    credential: new ApiKeyCredential(config["ApiKey"]!)
+    credential: new ApiKeyCredential(config["OpenAI:ApiKey"]!)
 ));
 
 var app = builder.Build();
