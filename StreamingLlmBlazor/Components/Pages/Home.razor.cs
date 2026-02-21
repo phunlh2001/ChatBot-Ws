@@ -9,7 +9,6 @@ public partial class Home
 {
     public string Input { get; set; } = string.Empty;
     private List<ChatMessage> Messages = new();
-    private string Answer { get; set; } = string.Empty;
     private ClientWebSocket? _socket;
 
     [Inject] private NavigationManager Nav { get; set; } = default!;

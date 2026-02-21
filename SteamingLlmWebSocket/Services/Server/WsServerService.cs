@@ -25,9 +25,10 @@ public class WsServerService(IConfiguration config)
             if (result.MessageType == WebSocketMessageType.Close)
             {
                 await wsClient.CloseAsync(
-                    WebSocketCloseStatus.NormalClosure,
-                    "Backend close",
-                    ct);
+                    closeStatus: WebSocketCloseStatus.NormalClosure,
+                    statusDescription: "Backend close",
+                    cancellationToken: ct);
+
                 break;
             }
 

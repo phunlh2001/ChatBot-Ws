@@ -35,9 +35,10 @@ public class WsChatEndpoint(AiChatService chatService) : EndpointWithoutRequest
             if (result.MessageType == WebSocketMessageType.Close)
             {
                 await socket.CloseAsync(
-                    WebSocketCloseStatus.NormalClosure,
-                    "Closed",
-                    ct);
+                    closeStatus: WebSocketCloseStatus.NormalClosure,
+                    statusDescription: "Closed",
+                    cancellationToken: ct);
+
                 break;
             }
 
@@ -45,8 +46,8 @@ public class WsChatEndpoint(AiChatService chatService) : EndpointWithoutRequest
 
             await foreach (var chunk in _chatService.StreamingAnswerAsync(userMessage, ct))
             {
-                var bytes = Encoding.UTF8.GetBytes(chunk);
-                await socket.SendAsync(bytes, WebSocketMessageType.Text, endOfMessage: true, ct);
+                var chunkBuffer = Encoding.UTF8.GetBytes(chunk);
+                await socket.SendAsync(chunkBuffer, WebSocketMessageType.Text, endOfMessage: true, ct);
             }
         }
     }

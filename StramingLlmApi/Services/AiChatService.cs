@@ -5,19 +5,17 @@ using OpenAI.Chat;
 
 namespace StramingLlmApi.Services;
 
-public class AiChatService
+public class AiChatService(IConfiguration config)
 {
-    private readonly ChatClient _client;
+    private readonly ChatClient _client = new(
+        model: "gpt-5",
+        credential: new ApiKeyCredential(config["OpenAI:ApiKey"]!)
+    );
 
     private readonly List<ChatMessage> _messages = new()
     {
         new SystemChatMessage("You are a helpful assistant.")
     };
-
-    public AiChatService(IConfiguration config)
-    {
-        _client = new ChatClient("gpt-5", new ApiKeyCredential(config["OpenAI:ApiKey"]!));
-    }
 
     public async IAsyncEnumerable<string> StreamingAnswerAsync(string userContent, [EnumeratorCancellation] CancellationToken ct = default)
     {
