@@ -7,7 +7,7 @@
         "Action": "Start"
       },
       {
-        "Path": "..\\StramingLlmApi\\StramingLlmApi.csproj",
+        "Path": "..\\StramingLlmApi\\StreamingLlmApi.csproj",
         "Action": "Start"
       },
       {
